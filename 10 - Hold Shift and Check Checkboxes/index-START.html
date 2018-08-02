@@ -101,16 +101,39 @@
 <script>
 
   //get all checkboxes in query selector
-  const checkboxes =document.querySelectorAll('.input [input-type = "checkbox"');
+  const checkboxes =document.querySelectorAll("input[type = 'checkbox']");
   console.log(checkboxes);
+  
+  let lastChecked;
 
   //then we have to add event listeners to each checkbox, on the click action
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', handleClick);
+  });
 
   //then when that listner is called we do magic
+  function handleClick(e){
+    let isBetween = false;
+    
+    if (e.shiftKey && this.checked){
+      checkboxes.forEach(checkbox => {
+        console.log(checkbox);
+        if (checkbox === this || checkbox ===lastChecked)
+        {
+          console.log('starting inbetween now')
+          isBetween = !isBetween;
+        }
 
+        if (isBetween){
+          checkbox.checked= true;
+        }
+      })
+
+    }
+    lastChecked = this;
   //1. loop through the boxes
   //2. set isBetween if its equal to this or last checked
-
+  }
 //listen for isbetween being true, if it is, check the box
   //set lastchecked = this
 </script>
