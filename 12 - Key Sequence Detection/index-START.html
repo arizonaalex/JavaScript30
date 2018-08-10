@@ -6,7 +6,31 @@
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+  <span class="welcome">Type "AlexRules" and enjoy!</span>
 <script>
+
+const pressed=[];
+const secretCode = 'alexrules';
+const span = document.querySelector('.welcome');
+
+
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    if (cornify_count > 0){
+      cornify_add();
+    }
+    pressed.push(e.key);
+
+    pressed.splice(-secretCode.length -1,pressed.length - secretCode.length)
+
+    if (pressed.join('') == secretCode){
+      console.log("wooo you did it!");
+      cornify_add();
+      span.textContent = "You have activated my trap card! Type more!";
+    }
+
+    console.log(pressed);
+  });
 </script>
 </body>
 </html>
