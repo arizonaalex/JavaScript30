@@ -70,7 +70,18 @@
         facebook: 'wesbox.developer'
       }
     }
-    
+    console.clear();
+    console.log(wes);
+
+    const dev = Object.assign({},wes);
+    //this only copies one level deep
+    //you can find a clone deep method to clone everything
+
+    //poor man's way of cloning deep
+    //this turns everything to a strong
+    //then immediately converts it to a JSON object
+    const dev2=JSON.parse(JSON.stringify(wes));
+
       }
     }
   </script>
