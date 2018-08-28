@@ -5,23 +5,29 @@ const strip = document.querySelector('.strip');
 const snap = document.querySelector('.snap');
 
 function getVideo(){
-
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false})
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(localMediaStream => {
-        console.log(localMediaStream);
-        video.src = window.URL.createObjectURL(localMediaStream);
-        video.play();
+      console.log(localMediaStream);
+      video.src = window.URL.createObjectURL(localMediaStream);
+      video.play();
     })
     .catch(err => {
-        console.error(`OH NO!`);
+      console.error(`OH NO!!!`, err);
     });
 }
 
-function paintToCanvas(){
+function paintToCanvas() {
     const width = video.videoWidth;
     const height = video.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
     console.log(width,height);
+    
+    setInterval(() =>{
+        ctx.drawImage(video, 0, 0, width, height);
+    }, 16);
 }
 
 getVideo();
-paintToCanvas();
+video.addEventListener('canplay', paintToCanvas);
+
